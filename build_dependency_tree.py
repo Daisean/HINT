@@ -131,5 +131,8 @@ data = {'train_tree': train_tree,
         'test_label': test_label
         }
 
-fout = open('trees/' + dataset + '.pickle', 'wb')
+root_path = 'trees/'
+if not os.path.exists(root_path):
+    os.makedirs(root_path)
+fout = open(root_path + dataset + '.pickle', 'wb')
 pickle.dump(data, fout)

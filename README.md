@@ -15,7 +15,6 @@ python build_encoding_tree.py -d <dataset> -k <tree_deepth> -o <onehot> -a <add>
 python build_encoding_tree.py -d mr -k 2 -o True -a False -s False
 
 Start training and inference as:
-    
      python main.py [--dataset DATASET] [--tree_deepth DEEPTH]
                     [--epochs EPOCHS] [--batch_size BATCHSIZE]
                     [--hidden_dim HIDDEN_DIM] [--learning_rate LEARNING_RATE]
@@ -23,5 +22,4 @@ Start training and inference as:
                     [--num_mlp_layers MLP_LAYERS] [--l2rate L2RATE]
                     [--tree_pooling_type TREE_POOLING] [--mode MODE]
                     [--position_embedding PE] 
-    
-     example: python main.py -d mr -k 2 -b 4 -md dependency -pe onehot
+example: python main.py -d mr -k 2 -b 4 -md dependency -pe onehot

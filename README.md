@@ -7,12 +7,15 @@ Download stanford nlp model
 You can use other dependency parsing model, find on https://stanfordnlp.github.io/stanfordnlp/models.html
 
 Build dependency tree for dataset in `data/corpus/` as:
-python build_dependency_tree.py <dataset>
+
+    python build_dependency_tree.py <dataset>
+    
 Provided datasets include `mr`,`ohsumed`,`R8`and`R52`. 
 
 Build encoding tree for dataset as:
-python build_encoding_tree.py -d <dataset> -k <tree_deepth> -o <onehot> -a <add> -s <stop>
-python build_encoding_tree.py -d mr -k 2 -o True -a False -s False
+    
+    python build_encoding_tree.py -d <dataset> -k <tree_deepth> -o <onehot> -a <add> -s <stop>
+    python build_encoding_tree.py -d mr -k 2 -o True -a False -s False
 
 Start training and inference as:
     

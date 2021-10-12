@@ -517,5 +517,6 @@ def map_id(y, k):
     for i, n in enumerate(new_treenode_list):
         new_y[i] = n
     y.tree_node = new_y
+    y.root_id = len(list(y.tree_node.keys())) - 1
     # new_y = sorted(sorted(new_y.keys()))
     return y

@@ -30,11 +30,11 @@ Start training and inference as:
 
 ## Citation
 
-@misc{zhang2021tent,
-      title={TENT: Text Classification Based on ENcoding Tree Learning}, 
-      author={Chong Zhang and Junran Wu and He Zhu and Ke Xu},
-      year={2021},
-      eprint={2110.02047},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
+    @misc{zhang2021tent,
+          title={TENT: Text Classification Based on ENcoding Tree Learning}, 
+          author={Chong Zhang and Junran Wu and He Zhu and Ke Xu},
+          year={2021},
+          eprint={2110.02047},
+          archivePrefix={arXiv},
+          primaryClass={cs.CL}
+    }

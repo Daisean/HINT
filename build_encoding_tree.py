@@ -37,20 +37,23 @@ def load_dep_tree(dataset, height, onehot=False, add=False, key=False, window=-1
     # load dependency tree , then build train and test
     if key:
         if onehot:
-            root_path = 'trees/key/onehot/' + dataset
+            root_path = 'trees/key/onehot/'
         else:
             if add:
-                root_path = 'trees/key/add/' + dataset
+                root_path = 'trees/key/add/'
             else:
-                root_path = 'trees/key/concat/' + dataset
+                root_path = 'trees/key/concat/'
     else:
         if onehot:
-            root_path = 'trees/dependency/onehot/' + dataset
+            root_path = 'trees/dependency/onehot/'
         else:
             if add:
-                root_path = 'trees/dependency/add/' + dataset
+                root_path = 'trees/dependency/add/'
             else:
-                root_path = 'trees/dependency/concat/' + dataset
+                root_path = 'trees/dependency/concat/'
+
+    if not os.path.exists(root_path):
+        os.makedirs(root_path)
 
     # Load and Some preprocessing
     train_dptree, train_feature, train_y, test_dptree, test_feature, test_y, max_length = load_dpdata(dataset)
@@ -64,8 +67,8 @@ def load_dep_tree(dataset, height, onehot=False, add=False, key=False, window=-1
     train_data = {'adj': train_adj, 'tree': train_tree, 'label': train_y, 'feature': train_feature}
     test_data = {'adj': test_adj, 'tree': test_tree, 'label': test_y, 'feature': test_feature}
 
-    f_train = open(root_path + '_train_' + str(height) + '.pickle', 'wb')
-    f_test = open(root_path + '_test_' + str(height) + '.pickle', 'wb')
+    f_train = open(root_path + dataset + '_train_' + str(height) + '.pickle', 'wb')
+    f_test = open(root_path + dataset + '_test_' + str(height) + '.pickle', 'wb')
     pickle.dump(train_data, f_train)
     pickle.dump(test_data, f_test)
 

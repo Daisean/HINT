@@ -230,6 +230,7 @@ class PartitionTreeV2():
                     if i == 0:
                         new_node = PartitionTreeNode(ID=new_id, partition=list(nodes_ids), children={new_id - 1, 0},
                                                      vol=0, g=0, child_h=i + 1)
+                        nodes_dict[0].parent = new_id
                     else:
                         new_node = PartitionTreeNode(ID=new_id, partition=list(nodes_ids), children={new_id - 1},
                                                      vol=0, g=0, child_h=i+1)

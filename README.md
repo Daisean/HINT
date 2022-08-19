@@ -1,5 +1,5 @@
-# TENT
-Implementation for TENT: Text Classification Based on ENcoding Tree Learning
+# HINT
+Implementation for Hierarchical information matters: Text classification via tree based graph neural network
 ## Usage
 Download stanford nlp model
     import stanfordnlp

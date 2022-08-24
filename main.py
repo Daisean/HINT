@@ -7,8 +7,8 @@ import argparse
 import numpy as np
 import torch.nn as nn
 import torch.optim as optim
-from build_encoding_tree import get_train_and_test
-from models.structure_optimization_learning import SOL
+from build_coding_tree import get_train_and_test
+from models.coding_tree_learning import TL
 
 criterion = nn.CrossEntropyLoss()
 
@@ -16,7 +16,7 @@ criterion = nn.CrossEntropyLoss()
 def train(args, model, device, train_trees, optimizer, epoch):
     model.train()
 
-    total_iters = args.iters_per_epoch
+    total_iters = 0
 
     indices = np.arange(0, len(train_trees))
     np.random.shuffle(indices)
@@ -43,8 +43,8 @@ def train(args, model, device, train_trees, optimizer, epoch):
         loss = loss.detach().cpu().numpy()
         loss_accum += loss
 
-    average_loss = loss_accum/total_iters
-    print('epoch: %d' % epoch, "loss training: %.6f" % average_loss)
+    average_loss = loss_accum / total_iters
+    print('epoch: %d' % (epoch), "loss training: %.6f" % (average_loss))
 
     return average_loss
 
@@ -90,7 +90,7 @@ def test(args, model, device, train_trees, val_trees, test_trees, epoch):
 
 def main():
     # settings
-    parser = argparse.ArgumentParser(description='Pytorch SOL for text classification')
+    parser = argparse.ArgumentParser(description='Pytorch HINT for text classification')
     parser.add_argument('-d', '--dataset', type=str, default="mr",
                         help='name of dataset (default: MUTAG)')
     parser.add_argument('-k', '--tree_deepth', type=int, default=2,
@@ -101,6 +101,10 @@ def main():
                         help='number of epochs to train (default: 500)')
     parser.add_argument('-lr', '--learning_rate', type=float, default=0.001,
                         help='learning rate (default: 0.001)')
+    parser.add_argument('--iters_per_epoch', type=int, default=50,
+                        help='number of iterations per each epoch (default: 50)')
+    parser.add_argument('-s', '--seed', type=int, default=1,
+                        help='random seed for splitting the dataset into 10 (default: 0)')
     parser.add_argument('-id', '--input_dim', type=int, default=300,
                         help='the dim of the input (default: 300)')
     parser.add_argument('-lm', '--num_mlp_layers', type=int, default=2,
@@ -113,6 +117,8 @@ def main():
                         help='L2 penalty lambda')
     parser.add_argument('-tp', '--tree_pooling_type', type=str, default="sum", choices=["root", "sum", "average"],
                         help='Pooling for over nodes in a tree: root, sum or average')
+    parser.add_argument('-np', '--neighbor_pooling_type', type=str, default="sum", choices=["sum", "average", "max"],
+                        help='Pooling for over neighboring nodes: sum, average or max')
     parser.add_argument('-md', '--mode', type=str, default="dependency", choices=["window", "dependency", "key"],
                         help='Mode')
     parser.add_argument('-pe', '--position_embedding', type=str, default="onehot", choices=["add", "concat", "onehot"],
@@ -143,7 +149,7 @@ def main():
     num_classes = len(set([t['label'] for t in train_trees]))
     print('#data:%s\t#classes:%s' % (len(train_trees) + len(test_trees), num_classes))
 
-    model = SOL(args.tree_deepth,
+    model = TL(args.tree_deepth,
                 args.num_mlp_layers,
                 train_trees[0]['node_features'].shape[1],
                 args.hidden_dim,

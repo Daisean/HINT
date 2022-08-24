@@ -2,7 +2,7 @@ import pickle as pkl
 import sys
 import torch
 from tqdm import tqdm
-import structure_optimal as so
+import sema
 import numpy as np
 
 
@@ -160,14 +160,14 @@ def check_symmetric(a, tol=1e-8):
 def preprocess_tree(adj, height=2):
     # build encoding tree
     adj = np.array(adj)
-    y = so.PartitionTreeV2(adj)
+    y = sema.PartitionTreeV2(adj)
     if adj.shape[0] <= 2:
         m = 'v1'
     else:
         m = 'v2'
     x = y.build_encoding_tree(mode=m, k=height)
-    y = so.get_child_h(y, k=height)
-    y = so.map_id(y, k=height)
+    y = sema.get_child_h(y, k=height)
+    y = sema.map_id(y, k=height)
     return y.tree_node
 
 

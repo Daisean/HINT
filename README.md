@@ -25,8 +25,18 @@ Start training and inference as:
 
 ## Citation
 
-    @misc{zhang2022hint,
-          title={Hierarchical information matters: Text classification via tree based graph neural network}, 
-          author={Chong Zhang and He Zhu and Xingyu Peng and Junran Wu and Ke Xu},
-          year={2022},
-    }
+    @inproceedings{zhang-etal-2022-hierarchical,
+    title = "Hierarchical Information Matters: Text Classification via Tree Based Graph Neural Network",
+    author = "Zhang, Chong  and
+      Zhu, He  and
+      Peng, Xingyu  and
+      Wu, Junran  and
+      Xu, Ke",
+    booktitle = "Proceedings of the 29th International Conference on Computational Linguistics",
+    month = oct,
+    year = "2022",
+    address = "Gyeongju, Republic of Korea",
+    publisher = "International Committee on Computational Linguistics",
+    url = "https://aclanthology.org/2022.coling-1.79",
+    pages = "950--959"
+}
